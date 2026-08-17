@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hindu Smart Clock</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="widget" onclick="showSchedule()">
+
+    <h1 id="time">00:00:00</h1>
+
+    <p id="date">Loading...</p>
+
+    <div class="status-box">
+        <small>Current</small>
+        <h2 id="current">Loading...</h2>
+        <p id="currentEnd">Ends : --</p>
+    </div>
+
+    <div class="status-box">
+        <small>Next</small>
+        <h2 id="next">Loading...</h2>
+        <p id="nextStart">Starts : --</p>
+    </div>
+
+    <p class="tap">Tap to view today's timings</p>
+
+</div>
+
+<div id="scheduleModal" class="modal">
+
+    <div class="modal-content">
+
+        <span class="close" onclick="closeSchedule()">&times;</span>
+
+        <h2>🕉 Today's Timings</h2>
+
+        <table>
+            <tr>
+                <th>Event</th>
+                <th>Time</th>
+            </tr>
+
+            <tbody id="scheduleTable"></tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
