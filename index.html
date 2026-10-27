@@ -1,58 +1,886 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#111111"
+    >
+
     <title>Hindu Smart Clock</title>
-    <link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background:
+                #0d0d0d;
+
+            color:
+                white;
+
+            min-height:
+                100vh;
+
+            display:
+                flex;
+
+            justify-content:
+                center;
+        }
+
+
+        /* =========================
+           MOBILE APP CONTAINER
+        ========================= */
+
+        .app {
+
+            width:
+                100%;
+
+            max-width:
+                430px;
+
+            min-height:
+                100vh;
+
+            background:
+                #1e1e1e;
+
+            padding:
+                20px;
+
+            position:
+                relative;
+
+            overflow-x:
+                hidden;
+        }
+
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        .header {
+
+            display:
+                flex;
+
+            align-items:
+                center;
+
+            justify-content:
+                space-between;
+
+            margin-bottom:
+                25px;
+        }
+
+
+        .menu {
+
+            font-size:
+                25px;
+
+            cursor:
+                pointer;
+        }
+
+
+        .title {
+
+            text-align:
+                center;
+
+            flex:
+                1;
+        }
+
+
+        .title h1 {
+
+            font-size:
+                19px;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        .title p {
+
+            color:
+                #999;
+
+            font-size:
+                11px;
+
+            margin-top:
+                4px;
+        }
+
+
+        .settings {
+
+            font-size:
+                22px;
+        }
+
+
+        /* =========================
+           CLOCK
+        ========================= */
+
+        .clock-section {
+
+            text-align:
+                center;
+
+            margin-top:
+                10px;
+
+            margin-bottom:
+                25px;
+        }
+
+
+        #time {
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size:
+                42px;
+
+            font-weight:
+                bold;
+
+            letter-spacing:
+                1px;
+        }
+
+
+        #date {
+
+            color:
+                #bbbbbb;
+
+            margin-top:
+                8px;
+
+            font-size:
+                14px;
+        }
+
+
+        /* =========================
+           CARD
+        ========================= */
+
+        .card {
+
+            background:
+                #292929;
+
+            border-radius:
+                18px;
+
+            padding:
+                20px;
+
+            margin-bottom:
+                15px;
+
+            border:
+                1px solid #3b3b3b;
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.25);
+        }
+
+
+        .label {
+
+            font-size:
+                12px;
+
+            font-weight:
+                bold;
+
+            color:
+                #cccccc;
+
+            text-transform:
+                uppercase;
+
+            letter-spacing:
+                1px;
+
+            margin-bottom:
+                8px;
+        }
+
+
+        .event-name {
+
+            font-size:
+                23px;
+
+            font-weight:
+                bold;
+
+            margin-bottom:
+                8px;
+        }
+
+
+        .event-time {
+
+            color:
+                #bbbbbb;
+
+            font-size:
+                13px;
+        }
+
+
+        /* =========================
+           EVENT COLORS
+        ========================= */
+
+        .nalla {
+            color: #2ecc71;
+        }
+
+        .rahu {
+            color: #e74c3c;
+        }
+
+        .yamaganda {
+            color: #f39c12;
+        }
+
+        .gulikai {
+            color: #9b59b6;
+        }
+
+        .brahma {
+            color: #3498db;
+        }
+
+        .normal {
+            color: #ffffff;
+        }
+
+
+        /* =========================
+           SCHEDULE
+        ========================= */
+
+        .schedule-title {
+
+            font-size:
+                18px;
+
+            font-weight:
+                bold;
+
+            margin-top:
+                25px;
+
+            margin-bottom:
+                15px;
+        }
+
+
+        .schedule-item {
+
+            background:
+                #292929;
+
+            border-radius:
+                14px;
+
+            padding:
+                15px;
+
+            margin-bottom:
+                10px;
+
+            display:
+                flex;
+
+            justify-content:
+                space-between;
+
+            align-items:
+                center;
+        }
+
+
+        .schedule-name {
+
+            font-weight:
+                bold;
+
+            font-size:
+                14px;
+        }
+
+
+        .schedule-time {
+
+            color:
+                #aaa;
+
+            font-size:
+                12px;
+
+            margin-top:
+                4px;
+        }
+
+
+        /* =========================
+           REFRESH
+        ========================= */
+
+        .refresh {
+
+            width:
+                100%;
+
+            border:
+                none;
+
+            border-radius:
+                14px;
+
+            padding:
+                14px;
+
+            background:
+                #f39c12;
+
+            color:
+                white;
+
+            font-size:
+                15px;
+
+            font-weight:
+                bold;
+
+            cursor:
+                pointer;
+
+            margin-top:
+                10px;
+        }
+
+
+        .refresh:active {
+
+            transform:
+                scale(0.98);
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        .footer {
+
+            text-align:
+                center;
+
+            color:
+                #666;
+
+            font-size:
+                11px;
+
+            margin-top:
+                25px;
+
+            padding-bottom:
+                20px;
+        }
+
+
+        /* =========================
+           LOADING
+        ========================= */
+
+        .loading {
+
+            color:
+                #888;
+
+            text-align:
+                center;
+
+            padding:
+                20px;
+        }
+
+    </style>
+
 </head>
+
+
 <body>
 
-<div class="widget" onclick="showSchedule()">
 
-    <h1 id="time">00:00:00</h1>
+<div class="app">
 
-    <p id="date">Loading...</p>
 
-    <div class="status-box">
-        <small>Current</small>
-        <h2 id="current">Loading...</h2>
-        <p id="currentEnd">Ends : --</p>
+    <!-- HEADER -->
+
+    <div class="header">
+
+        <div class="menu">
+            ☰
+        </div>
+
+
+        <div class="title">
+
+            <h1>
+                🕉 HINDU SMART CLOCK
+            </h1>
+
+            <p>
+                Daily Hindu Timings
+            </p>
+
+        </div>
+
+
+        <div class="settings">
+            ⚙
+        </div>
+
     </div>
 
-    <div class="status-box">
-        <small>Next</small>
-        <h2 id="next">Loading...</h2>
-        <p id="nextStart">Starts : --</p>
+
+
+    <!-- CLOCK -->
+
+    <div class="clock-section">
+
+        <div id="time">
+            --:--:--
+        </div>
+
+        <div id="date">
+            Loading...
+        </div>
+
     </div>
 
-    <p class="tap">Tap to view today's timings</p>
+
+
+    <!-- CURRENT EVENT -->
+
+    <div class="card">
+
+        <div class="label">
+            Current
+        </div>
+
+        <div
+            id="current"
+            class="event-name normal"
+        >
+            Loading...
+        </div>
+
+        <div
+            id="currentEnd"
+            class="event-time"
+        >
+            Loading...
+        </div>
+
+    </div>
+
+
+
+    <!-- NEXT EVENT -->
+
+    <div class="card">
+
+        <div class="label">
+            Next
+        </div>
+
+        <div
+            id="next"
+            class="event-name normal"
+        >
+            Loading...
+        </div>
+
+        <div
+            id="nextStart"
+            class="event-time"
+        >
+            Loading...
+        </div>
+
+    </div>
+
+
+
+    <!-- TODAY'S SCHEDULE -->
+
+    <div class="schedule-title">
+        🕉 Today's Timings
+    </div>
+
+
+    <div id="schedule">
+
+        <div class="loading">
+            Loading timings...
+        </div>
+
+    </div>
+
+
+    <button
+        class="refresh"
+        onclick="loadAll()"
+    >
+        🔄 Refresh Timings
+    </button>
+
+
+    <div class="footer">
+
+        Hindu Smart Clock v2.0
+
+        <br>
+
+        © Harini
+
+    </div>
+
 
 </div>
 
-<div id="scheduleModal" class="modal">
 
-    <div class="modal-content">
 
-        <span class="close" onclick="closeSchedule()">&times;</span>
+<script>
 
-        <h2>🕉 Today's Timings</h2>
 
-        <table>
-            <tr>
-                <th>Event</th>
-                <th>Time</th>
-            </tr>
+    // =========================================
+    // EVENT COLOR
+    // =========================================
 
-            <tbody id="scheduleTable"></tbody>
+    function getEventClass(name) {
 
-        </table>
+        if (name.includes("Nalla")) {
+            return "nalla";
+        }
 
-    </div>
+        if (name.includes("Rahu")) {
+            return "rahu";
+        }
 
-</div>
+        if (name.includes("Yamaganda")) {
+            return "yamaganda";
+        }
 
-<script src="script.js"></script>
+        if (name.includes("Gulikai")) {
+            return "gulikai";
+        }
+
+        if (name.includes("Brahma")) {
+            return "brahma";
+        }
+
+        return "normal";
+    }
+
+
+
+    // =========================================
+    // CLOCK
+    // =========================================
+
+    async function loadClock() {
+
+        try {
+
+            const response =
+                await fetch("/clock");
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Clock API error"
+                );
+
+            }
+
+            const data =
+                await response.json();
+
+
+            document.getElementById(
+                "time"
+            ).textContent =
+                data.time;
+
+
+            document.getElementById(
+                "date"
+            ).textContent =
+                data.date;
+
+
+            const current =
+                document.getElementById(
+                    "current"
+                );
+
+
+            current.textContent =
+                data.current.name;
+
+
+            current.className =
+                "event-name " +
+                getEventClass(
+                    data.current.name
+                );
+
+
+            document.getElementById(
+                "currentEnd"
+            ).textContent =
+                "Ends : " +
+                data.current.end;
+
+
+            const next =
+                document.getElementById(
+                    "next"
+                );
+
+
+            next.textContent =
+                data.next.name;
+
+
+            next.className =
+                "event-name " +
+                getEventClass(
+                    data.next.name
+                );
+
+
+            document.getElementById(
+                "nextStart"
+            ).textContent =
+                "Starts : " +
+                data.next.start;
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            document.getElementById(
+                "time"
+            ).textContent =
+                "Unable to load";
+
+        }
+
+    }
+
+
+
+    // =========================================
+    // TODAY'S SCHEDULE
+    // =========================================
+
+    async function loadSchedule() {
+
+        try {
+
+            const response =
+                await fetch("/schedule");
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    "Schedule API error"
+                );
+
+            }
+
+
+            const data =
+                await response.json();
+
+
+            const container =
+                document.getElementById(
+                    "schedule"
+                );
+
+
+            container.innerHTML = "";
+
+
+            data.events.forEach(
+                event => {
+
+                    const item =
+                        document.createElement(
+                            "div"
+                        );
+
+
+                    item.className =
+                        "schedule-item";
+
+
+                    const color =
+                        getEventClass(
+                            event.name
+                        );
+
+
+                    item.innerHTML = `
+
+                        <div>
+
+                            <div
+                                class="schedule-name ${color}"
+                            >
+                                ${event.name}
+                            </div>
+
+                            <div
+                                class="schedule-time"
+                            >
+                                ${event.start}
+                                →
+                                ${event.end}
+                            </div>
+
+                        </div>
+
+                    `;
+
+
+                    container.appendChild(
+                        item
+                    );
+
+                }
+            );
+
+        }
+
+        catch (error) {
+
+            console.error(error);
+
+            document.getElementById(
+                "schedule"
+            ).innerHTML = `
+
+                <div class="loading">
+
+                    Unable to load timings.
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+
+    // =========================================
+    // LOAD EVERYTHING
+    // =========================================
+
+    function loadAll() {
+
+        loadClock();
+
+        loadSchedule();
+
+    }
+
+
+
+    // =========================================
+    // INITIAL LOAD
+    // =========================================
+
+    loadAll();
+
+
+    // =========================================
+    // UPDATE CLOCK EVERY SECOND
+    // =========================================
+
+    setInterval(
+        loadClock,
+        1000
+    );
+
+
+    // =========================================
+    // UPDATE SCHEDULE EVERY MINUTE
+    // =========================================
+
+    setInterval(
+        loadSchedule,
+        60000
+    );
+
+
+</script>
+
 
 </body>
+
 </html>
