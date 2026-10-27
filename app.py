@@ -9,8 +9,8 @@ from sunrise import get_sun_times
 from brahma import get_brahma_muhurta
 from rahu import get_rahu_kalam
 from yamakanda import get_yamaganda
-from gulikai import get_gulikai
-from nalla_neram import get_nalla_neram
+from gulikai import get_gulikai     # matches gulikai.py
+from nalla import get_nalla_neram   # changed from nalla_neram to nalla (to match nalla.py)
 from utils import current_event, next_event, format_time
 
 
