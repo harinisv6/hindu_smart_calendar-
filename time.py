@@ -10,14 +10,14 @@ from tkinter import *
 from tkinter import Toplevel
 from datetime import datetime
 
-from modules.location import get_location
-from modules.sunrise import get_sun_times
-from modules.brahma import get_brahma_muhurta
-from modules.rahu import get_rahu_kalam
-from modules.yamakanda import get_yamaganda
-from modules.gulikai import get_gulikai
-from modules.nalla_neram import get_nalla_neram
-from modules.utils import (
+from location import get_location
+from sunrise import get_sun_times
+from brahma import get_brahma_muhurta
+from rahu import get_rahu_kalam
+from yamakanda import get_yamaganda
+from gulikai import get_gulikai
+from nalla import get_nalla_neram
+from utils import (
     current_event,
     next_event,
     format_time,
