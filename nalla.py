@@ -16,9 +16,9 @@ astrology service.
 ===========================================================
 """
 
-from .rahu import get_rahu_kalam
-from .yamakanda import get_yamaganda
-from .gulikai import get_gulikai
+from rahu import get_rahu_kalam
+from yamakanda import get_yamaganda
+from gulikai import get_gulikai
 
 
 def get_nalla_neram(now, sunrise, sunset):
